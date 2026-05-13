@@ -1,0 +1,20 @@
+@baseUrl = http://localhost:8080
+
+# STEP 2: After you run Step 1, copy the JWT from the response (the long "eyJ..." value
+# inside "token"). Paste it into @token on the next line (replace PASTE_JWT_HERE), then
+# run "Step 2: Current user".
+
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZW5naHVuIiwiaWF0IjoxNzc4NjY1MTc0LCJleHAiOjE3Nzg3NTE1NzR9.RS9LxmTNb0Q-Q3georTv7kU0-J5MMRwYbZFJZVCrffU
+
+### Step 1: Login → { "token": "eyJ..." }
+POST {{baseUrl}}/api/auth
+Content-Type: application/json
+
+{
+  "username": "senghun",
+  "password": "password123"
+}
+
+### Step 2: Current user (requires @token filled in at the top of this file)
+GET {{baseUrl}}/api/users/me
+Authorization: Bearer {{token}}
