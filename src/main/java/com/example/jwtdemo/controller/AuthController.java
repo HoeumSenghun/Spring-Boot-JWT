@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
@@ -23,8 +25,7 @@ public class AuthController {
     private final UserDetailsService userDetailsService;
 
     @PostMapping
-    public LoginResponse login(@RequestBody LoginRequest request) {
-        // Authenticate username + password
+    public LoginResponse login(@Valid @RequestBody LoginRequest request) {
         authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(), request.getPassword()
