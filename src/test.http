@@ -1,7 +1,7 @@
 @baseUrl = http://localhost:8080
 
 # For the "valid token" case only: run Login below, copy "token" into @token (no quotes).
-@token = PASTE_JWT_HERE
+@token = eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZW5naHVuIiwiaWF0IjoxNzc4ODk5MDc4LCJleHAiOjE3Nzg5ODU0Nzh9.XOq72mEj0JMOspbNqfJBMYVXaUo8gDVkdpY9GRRYksk
 
 ### Login — get a real JWT for the "valid token" case
 POST {{baseUrl}}/api/auth
@@ -17,7 +17,7 @@ GET {{baseUrl}}/api/users/me
 
 ### GET /api/users/me — B: wrong / garbage Bearer token → expect 401 Unauthorized
 GET {{baseUrl}}/api/users/me
-Authorization: Bearer not-a-valid-jwt
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZW5naHVuIiwiaWF0IjoxNzc4ODk5MDc4LCJleHAiOjE3Nzg5ODU0Nzh9.XOq72mEj0JMOspbNqfJBMYVXaUo8gDVkdpY9GRRYksk
 
 ### GET /api/users/me — C: valid token → expect 200 and "Hello, you are authenticated!"
 # Set @token at the top after Login, then run this request.
